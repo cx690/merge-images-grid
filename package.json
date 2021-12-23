@@ -1,0 +1,50 @@
+{
+  "name": "merge-images-grid",
+  "version": "1.0.0",
+  "description": "Merge images on canvas,looks likes grid template!Can be used both of node and browser.",
+  "author": "caixue 1256953820@qq.com",
+  "type": "module",
+  "license": "MIT",
+  "main": "./cjs/index.cjs",
+  "module": "./esm/index.js",
+  "types": "./esm/index.d.ts",
+  "exports": {
+    "import": "./esm/index.js",
+    "require": "./cjs/index.cjs"
+  },
+  "scripts": {
+    "test": "node --experimental-specifier-resolution=node --loader ts-node/esm src/test.ts",
+    "build": "rollup -c",
+    "type": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.1.1",
+    "@types/node": "^16.7.6",
+    "canvas": "^2.8.0",
+    "eslint": "^7.32.0",
+    "rollup": "^2.61.1",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "ts-node": "^10.4.0",
+    "typescript": "4.4.4"
+  },
+  "keywords": [
+    "merge",
+    "image",
+    "images",
+    "canvas",
+    "merge-images",
+    "grid"
+  ],
+  "files": [
+    "esm",
+    "cjs",
+    "demo.png",
+    "a.png",
+    "b.png",
+    "c.png"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  }
+}
