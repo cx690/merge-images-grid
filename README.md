@@ -85,9 +85,9 @@ export interface CanvasGridProps {
     height?: number;
     /** grid's padding default 10 */
     padding?: number | number[];
-    /** a way of alignment each box along the appropriate axis,like css 'align-items' */
+    /** a way of alignment each box along the appropriate axis,like css 'align-items',default 'center' */
     alignItems?: 'center' | 'start' | 'end';
-    /** a way of justifying each box along the appropriate axis,like css 'justify-items' */
+    /** a way of justifying each box along the appropriate axis,like css 'justify-items',default 'center' */
     justifyItems?: 'center' | 'start' | 'end';
     /** image list */
     list: ItemConfig[];
