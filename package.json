@@ -1,6 +1,6 @@
 {
   "name": "merge-images-grid",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Merge images on canvas,looks likes grid template!Can be used both of node and browser.",
   "author": "caixue 1256953820@qq.com",
   "type": "module",
