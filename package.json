@@ -1,6 +1,6 @@
 {
   "name": "merge-images-grid",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Merge images on canvas,looks likes grid template!Can be used both of node and browser.",
   "author": "caixue 1256953820@qq.com",
   "type": "module",
@@ -46,5 +46,11 @@
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "url": "https://github.com/cx690/merge-images-grid"
+  },
+  "engines": {
+    "node": ">=13"
   }
 }
