@@ -218,7 +218,7 @@ class CanvasGrid {
             ctx.translate(0, y);
             const rowHeight = rowHeights[rowIndex];
             for (let colIndex = 0, _l = row.length, x = 0; colIndex < _l; colIndex++) {
-                const { image, realWidth, realHeight, justifyItems, alignItems, maxWidth, maxHeight, objectFit } = row[colIndex];
+                const { image, realWidth, realHeight, justifyItems, alignItems, maxWidth, maxHeight, objectFit } = row[colIndex] || {};
                 const colWidth = colWidths[colIndex];
                 if (image && maxWidth && maxHeight && realHeight && realWidth) {
                     let dx = realWidth;
@@ -282,11 +282,11 @@ class CanvasGrid {
         const colWidths: number[] = [];
         const rowHeights: number[] = [];
         for (const row of colTemplate) {
-            const maxWidth = Math.max(...row.map(v => v?.width || 0));
+            const maxWidth = Math.max(...row.map(v => v?.width || 0).filter(v => typeof v === 'number'));
             colWidths.push(maxWidth);
         }
         for (const row of template) {
-            const maxHeight = Math.max(...row.map(v => v?.height || 0));
+            const maxHeight = Math.max(...row.map(v => v?.height || 0).filter(v => typeof v === 'number'));
             rowHeights.push(maxHeight);
         }
         if (widthType === 'max') {
@@ -296,7 +296,9 @@ class CanvasGrid {
             for (let rowIndex = 0, l = template.length; rowIndex < l; rowIndex++) {
                 const row = template[rowIndex];
                 for (let colIndex = 0, l = row.length; colIndex < l; colIndex++) {
-                    const { colSpan } = row[colIndex];
+                    const item = row[colIndex];
+                    if (!item) continue;
+                    const { colSpan } = item;
                     if (colSpan >= 2) {
                         const max = Math.max(...colWidths.slice(colIndex, colIndex + colSpan));
                         colWidths.fill(max, colIndex, colIndex + colSpan);
@@ -315,7 +317,9 @@ class CanvasGrid {
             for (let rowIndex = 0, l = colTemplate.length; rowIndex < l; rowIndex++) {
                 const row = colTemplate[rowIndex];
                 for (let colIndex = 0, l = row.length; colIndex < l; colIndex++) {
-                    const { rowSpan } = row[colIndex];
+                    const item = row[colIndex];
+                    if (!item) continue;
+                    const { rowSpan } = item;
                     if (rowSpan >= 2) {
                         const max = Math.max(...rowHeights.slice(colIndex, colIndex + rowSpan));
                         rowHeights.fill(max, colIndex, colIndex + rowSpan);
@@ -331,6 +335,7 @@ class CanvasGrid {
             const row = template[rowIndex];
             for (let colIndex = 0, l = row.length; colIndex < l; colIndex++) {
                 const item = row[colIndex];
+                if (!item) continue;
                 const { rowSpan, colSpan } = item;
                 if (rowSpan && colSpan) {
                     const gapWidth = (rowSpan - 1) * gap[0];
